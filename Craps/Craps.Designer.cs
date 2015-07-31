@@ -44,12 +44,19 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtCurrentBet = new System.Windows.Forms.TextBox();
             this.lblCurrentBet = new System.Windows.Forms.Label();
+            this.lblOdds = new System.Windows.Forms.Label();
+            this.txtOddsBet = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtCurOddsBet = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblCurOddsBet = new System.Windows.Forms.Label();
+            this.btnWalkAway = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(117, 184);
+            this.label1.Location = new System.Drawing.Point(156, 180);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 0;
@@ -99,7 +106,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(161, 209);
+            this.label2.Location = new System.Drawing.Point(202, 214);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 5;
@@ -116,6 +123,7 @@
             // 
             // btnConfirmBet
             // 
+            this.btnConfirmBet.AutoSize = true;
             this.btnConfirmBet.Location = new System.Drawing.Point(354, 209);
             this.btnConfirmBet.Name = "btnConfirmBet";
             this.btnConfirmBet.Size = new System.Drawing.Size(75, 23);
@@ -137,7 +145,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 246);
+            this.label3.Location = new System.Drawing.Point(3, 237);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 13);
             this.label3.TabIndex = 9;
@@ -148,7 +156,7 @@
             this.txtRecentResult.Enabled = false;
             this.txtRecentResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRecentResult.ForeColor = System.Drawing.Color.Black;
-            this.txtRecentResult.Location = new System.Drawing.Point(15, 262);
+            this.txtRecentResult.Location = new System.Drawing.Point(6, 253);
             this.txtRecentResult.Name = "txtRecentResult";
             this.txtRecentResult.Size = new System.Drawing.Size(100, 20);
             this.txtRecentResult.TabIndex = 10;
@@ -200,11 +208,85 @@
             this.lblCurrentBet.TabIndex = 15;
             this.lblCurrentBet.Visible = false;
             // 
+            // lblOdds
+            // 
+            this.lblOdds.AutoSize = true;
+            this.lblOdds.Location = new System.Drawing.Point(117, 237);
+            this.lblOdds.Name = "lblOdds";
+            this.lblOdds.Size = new System.Drawing.Size(111, 26);
+            this.lblOdds.TabIndex = 16;
+            this.lblOdds.Text = "Odds Bet\r\nCurrent Payout is 2:1 :";
+            this.lblOdds.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblOdds.Visible = false;
+            // 
+            // txtOddsBet
+            // 
+            this.txtOddsBet.Location = new System.Drawing.Point(240, 243);
+            this.txtOddsBet.Name = "txtOddsBet";
+            this.txtOddsBet.Size = new System.Drawing.Size(100, 20);
+            this.txtOddsBet.TabIndex = 17;
+            this.txtOddsBet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtOddsBet.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(384, 295);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Current Odds Bet:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtCurOddsBet
+            // 
+            this.txtCurOddsBet.Enabled = false;
+            this.txtCurOddsBet.Location = new System.Drawing.Point(371, 313);
+            this.txtCurOddsBet.Name = "txtCurOddsBet";
+            this.txtCurOddsBet.Size = new System.Drawing.Size(104, 20);
+            this.txtCurOddsBet.TabIndex = 19;
+            this.txtCurOddsBet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(396, 336);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 13);
+            this.label7.TabIndex = 20;
+            this.label7.Visible = false;
+            // 
+            // lblCurOddsBet
+            // 
+            this.lblCurOddsBet.AutoSize = true;
+            this.lblCurOddsBet.Location = new System.Drawing.Point(436, 195);
+            this.lblCurOddsBet.Name = "lblCurOddsBet";
+            this.lblCurOddsBet.Size = new System.Drawing.Size(0, 13);
+            this.lblCurOddsBet.TabIndex = 21;
+            this.lblCurOddsBet.Visible = false;
+            // 
+            // btnWalkAway
+            // 
+            this.btnWalkAway.Location = new System.Drawing.Point(12, 298);
+            this.btnWalkAway.Name = "btnWalkAway";
+            this.btnWalkAway.Size = new System.Drawing.Size(75, 23);
+            this.btnWalkAway.TabIndex = 22;
+            this.btnWalkAway.Text = "Walk Away";
+            this.btnWalkAway.UseVisualStyleBackColor = true;
+            this.btnWalkAway.Click += new System.EventHandler(this.btnWalkAway_Click);
+            // 
             // Craps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(503, 345);
+            this.Controls.Add(this.btnWalkAway);
+            this.Controls.Add(this.lblCurOddsBet);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtCurOddsBet);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtOddsBet);
+            this.Controls.Add(this.lblOdds);
             this.Controls.Add(this.lblCurrentBet);
             this.Controls.Add(this.txtCurrentBet);
             this.Controls.Add(this.label6);
@@ -247,6 +329,13 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtCurrentBet;
         private System.Windows.Forms.Label lblCurrentBet;
+        private System.Windows.Forms.Label lblOdds;
+        private System.Windows.Forms.TextBox txtOddsBet;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtCurOddsBet;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblCurOddsBet;
+        private System.Windows.Forms.Button btnWalkAway;
     }
 }
 
