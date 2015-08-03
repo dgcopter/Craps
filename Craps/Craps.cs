@@ -21,33 +21,43 @@ namespace Craps
         {
             try
             {
-
                 double dblBet = double.Parse(txtBet.Text);
                 double dblOdds = 0;
 
                 double dblCurBet = double.Parse(lblCurrentBet.Text);
                 double dblCurBank = double.Parse(txtBank.Text);
 
+                double dblCurOdds = 0;  
+
                 if (lblPhase.Text == "Come Out")
                 {
                     if (dblBet > dblCurBank || dblBet <= 0)
                         throw new Exception("Bad Bet");
+                    if (dblCurBet != 0)
+                        dblCurBank += dblCurBet;
+
                 }
                 else
                 {
                     dblOdds = double.Parse(txtOddsBet.Text);
-                    if (dblOdds + dblCurBet > dblCurBank || dblOdds <= 0)
-                        throw new Exception ("Bad Odds");
+                    dblCurOdds = double.Parse(lblCurOddsBet.Text);
+                    if (dblCurOdds != 0)
+                        dblCurBank += dblCurOdds;
+
+                    if (dblOdds > dblCurBank || dblOdds <= 0)
+                        throw new Exception ("Bad Bet");
                 }
                 if (lblPhase.Text == "Come Out")
                 {
                     txtCurrentBet.Text = dblBet.ToString("C");
                     lblCurrentBet.Text = dblBet.ToString();
+                    txtBank.Text = (dblCurBank - dblBet).ToString();
                 }
                 else
                 {
                     txtCurOddsBet.Text = dblOdds.ToString("C");
-                    lblCurOddsBet.Text = dblBet.ToString();
+                    lblCurOddsBet.Text = dblOdds.ToString();
+                    txtBank.Text = (dblCurBank - dblOdds).ToString();
                 }
                
             }
@@ -56,14 +66,16 @@ namespace Craps
                 if (ex.Message == "Bad Bet")
                     MessageBox.Show("Please enter a valid bet between $1 and " + double.Parse(txtBank.Text).ToString("C"),
                                     "Invalid Bet");
-                else if (ex.Message == "Bad Odds")
-                    MessageBox.Show("Please enter a valid bet between $1 and " + (double.Parse(txtBank.Text) - double.Parse(lblCurrentBet.Text)).ToString("C"),
-                                    "Invalid Bet");
+                //else if (ex.Message == "Bad Odds")
+                //    MessageBox.Show("Please enter a valid bet between $1 and " + (double.Parse(txtBank.Text) - double.Parse(lblCurrentBet.Text)).ToString("C"),
+                //                    "Invalid Bet");
                 else
                     MessageBox.Show("DON'T JUST TYPE RANDOM CRAP");
             }
 
         }
+
+
 
         private void btnRoll_Click(object sender, EventArgs e)
         {
@@ -87,6 +99,9 @@ namespace Craps
                 intDieOne = rnd.Next(1, 6);
                 intDieTwo = rnd.Next(1, 6);
 
+                //intDieOne = 1;
+                //intDieTwo = 1;
+
                 intDieSum = intDieOne + intDieTwo;
 
                 lblDieOne.Text = intDieOne.ToString();
@@ -95,7 +110,7 @@ namespace Craps
                 if (lblPhase.Text == "Come Out")
                 {
                     if (intDieSum == 7 || intDieSum == 11)
-                        dblResult += dblBet;
+                        dblResult += dblBet * 2;
                     else if (intDieSum == 2 || intDieSum == 3 || intDieSum == 12)
                         dblResult -= dblBet;
                     else
@@ -131,7 +146,7 @@ namespace Craps
                     if (intDieSum == 7)
                         dblResult -= (dblBet + dblCurOddsBet);
                     else if (intDieSum == intCurPoint)
-                        dblResult = dblBet + (dblCurOddsBet * dblOddsMult);
+                        dblResult = (dblBet * 2) + (dblCurOddsBet * dblOddsMult) + dblCurOddsBet;
                     else
                         dblResult = 0;
 
@@ -146,8 +161,8 @@ namespace Craps
                 }
                 if (dblResult != 0)
                 {
-                    txtRecentResult.Text = dblResult.ToString("C");
-                    txtBank.Text = (dblBank + dblResult).ToString();
+                    
+                    
 
                     txtCurrentBet.Text = 0.ToString("C");
                     lblCurrentBet.Text = 0.ToString();
@@ -164,11 +179,15 @@ namespace Craps
 
                     if (dblResult > 0)
                     {
+
+                        txtRecentResult.Text = (dblResult - dblBet - dblCurOddsBet).ToString("C");
+                        txtBank.Text = (dblBank + dblResult).ToString();
                         txtRecentResult.BackColor = Color.Green;
                         MessageBox.Show("WINNER WINNER CHICKEN DINNER!");
                     }
                     else
                     {
+                        txtRecentResult.Text = dblResult.ToString("C");
                         txtRecentResult.BackColor = Color.Red;
                         MessageBox.Show("TOO BAD SO SAD!");
                     }
